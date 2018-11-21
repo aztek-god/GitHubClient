@@ -2,7 +2,7 @@ package github.sdv.com.githubclient.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Item(
+data class User(
     @SerializedName("avatar_url")
     val avatarUrl: String?,
     @SerializedName("events_url")
@@ -29,8 +29,6 @@ data class Item(
     val receivedEventsUrl: String?,
     @SerializedName("repos_url")
     val reposUrl: String?,
-    @SerializedName("score")
-    val score: Double?,
     @SerializedName("site_admin")
     val siteAdmin: Boolean?,
     @SerializedName("starred_url")
