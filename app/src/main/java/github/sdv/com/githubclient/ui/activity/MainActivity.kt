@@ -5,7 +5,6 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import github.sdv.com.githubclient.App
 import github.sdv.com.githubclient.R
 import github.sdv.com.githubclient.adapter.MainAdapter
@@ -36,7 +35,13 @@ class MainActivity : AppCompatActivity() {
         binding.executePendingBindings()
 
         with(binding.recyclerView) {
-            adapter = mAdapter
+            adapter = mAdapter.apply {
+                eventObservable
+                    .doOnNext { userInfo ->
+                        DetailActivity.startActivity(this@MainActivity, userInfo)
+                    }
+                    .subscribe()
+            }
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
         }
 

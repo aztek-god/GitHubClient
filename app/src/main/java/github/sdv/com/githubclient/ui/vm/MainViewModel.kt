@@ -11,8 +11,8 @@ class MainViewModel(private val mRepository: GitHubRepository) : ViewModel() {
 
     private val mMutableUserLiveData: MutableLiveData<List<UserInfo>> = MutableLiveData()
 
-    var isLoading = ObservableField<Boolean>(false)
-    var isLoadingError = ObservableField<Boolean>(false)
+    val isLoading = ObservableField<Boolean>(false)
+    val isLoadingError = ObservableField<Boolean>(false)
 
     // hide live data mutability for encapsulation purposes.
     // This makes impossible to change mMutableUserLiveData field from outside
@@ -20,7 +20,6 @@ class MainViewModel(private val mRepository: GitHubRepository) : ViewModel() {
     val userLiveData: LiveData<List<UserInfo>> get() = mMutableUserLiveData
 
     fun getAllUsers() {
-//        isLoading.set(true)
         mRepository
             .getAllUsers()
             .doOnSubscribe {

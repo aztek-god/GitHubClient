@@ -7,10 +7,18 @@ import android.view.ViewGroup
 import github.sdv.com.githubclient.R
 import github.sdv.com.githubclient.databinding.UserInfoLayoutBinding
 import github.sdv.com.githubclient.model.data.UserInfo
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.Subject
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.UserInfoViewHolder>() {
 
     private val mData: MutableList<UserInfo> = ArrayList()
+
+    private val mHandlerPublisher: PublishSubject<UserInfo> = PublishSubject.create()
+
+    val eventObservable: Observable<UserInfo>
+        get() = mHandlerPublisher
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): UserInfoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,7 +32,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.UserInfoViewHolder>() {
     override fun getItemCount(): Int = mData.size
 
     override fun onBindViewHolder(vh: UserInfoViewHolder, index: Int) {
-        vh.onBind(mData[index])
+        vh.onBind(mData[index], mHandlerPublisher)
     }
 
     fun addData(data: List<UserInfo>) {
@@ -40,8 +48,11 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.UserInfoViewHolder>() {
 
 
     class UserInfoViewHolder(private val binding: UserInfoLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(userInfo: UserInfo) {
+        fun onBind(userInfo: UserInfo, listener: Subject<UserInfo>) {
             binding.userInfo = userInfo
+            binding.root.setOnClickListener {
+                listener.onNext(userInfo)
+            }
         }
     }
 }
