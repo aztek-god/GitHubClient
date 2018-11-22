@@ -2,7 +2,7 @@
 <layout
         xmlns:bind="http://schemas.android.com/apk/res/android">
     <data>
-        <variable name="userInfo" type="github.sdv.com.githubclient.model.UserInfo"/>
+        <variable name="userInfo" type="github.sdv.com.githubclient.model.data.UserInfo"/>
     </data>
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                  xmlns:app="http://schemas.android.com/apk/res-auto"

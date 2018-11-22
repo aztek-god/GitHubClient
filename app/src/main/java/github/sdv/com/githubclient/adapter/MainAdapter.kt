@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import github.sdv.com.githubclient.R
 import github.sdv.com.githubclient.databinding.UserInfoLayoutBinding
-import github.sdv.com.githubclient.model.UserInfo
+import github.sdv.com.githubclient.model.data.UserInfo
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.UserInfoViewHolder>() {
 

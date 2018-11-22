@@ -1,4 +1,4 @@
-package github.sdv.com.githubclient.model
+package github.sdv.com.githubclient.model.data
 
 import android.databinding.BindingAdapter
 import android.widget.ImageView

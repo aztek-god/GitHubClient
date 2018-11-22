@@ -2,7 +2,7 @@
 
 <layout xmlns:bind="http://schemas.android.com/apk/res/android">
     <data>
-        <variable name="searchResponse" type="github.sdv.com.githubclient.model.SearchResponse"/>
+        <variable name="searchResponse" type="github.sdv.com.githubclient.model.data.SearchResponse"/>
     </data>
     <android.support.constraint.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
