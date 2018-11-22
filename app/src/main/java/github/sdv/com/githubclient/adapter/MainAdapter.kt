@@ -29,7 +29,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.UserInfoViewHolder>() {
 
     fun addData(data: List<UserInfo>) {
         mData.addAll(data)
-        notifyItemRangeChanged(mData.size - data.size - 1, mData.size - 1)
+        notifyDataSetChanged()
     }
 
     fun updateData(data: List<UserInfo>) {

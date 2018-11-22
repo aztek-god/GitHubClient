@@ -1,5 +1,6 @@
-package github.sdv.com.githubclient.ui
+package github.sdv.com.githubclient.ui.activity
 
+import android.arch.lifecycle.Observer
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -10,7 +11,7 @@ import github.sdv.com.githubclient.R
 import github.sdv.com.githubclient.adapter.MainAdapter
 import github.sdv.com.githubclient.databinding.ActivityMainBinding
 import github.sdv.com.githubclient.di.DaggerMainActivityComponent
-import github.sdv.com.githubclient.model.repository.GitHubRepository
+import github.sdv.com.githubclient.ui.vm.MainViewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val mAdapter: MainAdapter by lazy { MainAdapter() }
 
     @Inject
-    lateinit var mRepository: GitHubRepository
+    lateinit var mModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -30,23 +31,19 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-
-        Log.d("tag", "respository = $mRepository")
-
-        mRepository
-            .getAllUsers()
-            .doOnNext {
-                Log.d("tag", "response = $it")
-            }
-            .doOnError {
-                Log.d("tag", "error = $it")
-            }
-            .subscribe()
-
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.viewModel = mModel
+        binding.executePendingBindings()
+
         with(binding.recyclerView) {
             adapter = mAdapter
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
         }
+
+        mModel.userLiveData.observe(this, Observer {
+            mAdapter.addData(it ?: emptyList())
+        })
+
+        mModel.getAllUsers()
     }
 }

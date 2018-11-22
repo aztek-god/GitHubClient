@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GitHubClient</string>
+    <string name="repos_are_loading">Repos are loading...</string>
 </resources>

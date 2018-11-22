@@ -2,7 +2,9 @@
 
 <layout xmlns:bind="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="android.view.View"/>
         <variable name="searchResponse" type="github.sdv.com.githubclient.model.data.SearchResponse"/>
+        <variable name="viewModel" type="github.sdv.com.githubclient.ui.vm.MainViewModel"/>
     </data>
     <android.support.constraint.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,7 +12,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.MainActivity" tools:layout_editor_absoluteY="81dp">
+            tools:context=".ui.activity.MainActivity" tools:layout_editor_absoluteY="81dp">
 
 
         <android.support.v7.widget.RecyclerView
@@ -20,6 +22,36 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-        />
+                app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"
+                android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"/>
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintHorizontal_bias="0.5" app:layout_constraintBottom_toTopOf="@+id/loadLabel"
+                app:layout_constraintVertical_chainStyle="packed"/>
+        <TextView
+                android:text="@string/repos_are_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/loadLabel"
+                android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/progressBar"
+                android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.5"/>
+        <!--<android.support.constraint.Group android:layout_width="0dp" android:layout_height="0dp"-->
+        <!--android:id="@+id/progressGroup"-->
+        <!--app:constraint_referenced_ids="progressBar,loadLabel"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintEnd_toStartOf="parent"-->
+        <!--app:layout_constraintBottom_toTopOf="parent"-->
+        <!--android:visibility="@{viewModel.isLoading() ? View.VISIBLE : View.GONE}"/>-->
     </android.support.constraint.ConstraintLayout>
 </layout>
