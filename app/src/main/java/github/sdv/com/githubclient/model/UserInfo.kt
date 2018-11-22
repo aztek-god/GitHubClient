@@ -1,5 +1,8 @@
 package github.sdv.com.githubclient.model
 
+import android.databinding.BindingAdapter
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.google.gson.annotations.SerializedName
 
 data class UserInfo(
@@ -39,4 +42,12 @@ data class UserInfo(
     val type: String?,
     @SerializedName("url")
     val url: String?
-)
+) {
+    companion object {
+        @BindingAdapter("asyncLoad")
+        @JvmStatic
+        fun loadImage(imageView: ImageView, url: String) {
+            Glide.with(imageView).load(url).into(imageView)
+        }
+    }
+}

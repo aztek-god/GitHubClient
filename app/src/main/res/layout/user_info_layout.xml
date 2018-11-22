@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:bind="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="userInfo" type="github.sdv.com.githubclient.model.UserInfo"/>
+    </data>
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="wrap_content">
+        <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp" tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/userThumb" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                app:asyncLoad="@{userInfo.avatarUrl}"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"/>
+        <TextView
+                android:text="@{`User name: ` + userInfo.login}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/userName"
+                app:layout_constraintTop_toTopOf="@+id/userThumb"
+                app:layout_constraintStart_toEndOf="@+id/userThumb" android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintHorizontal_bias="0.0"/>
+        <TextView
+                android:text="@{`User id: ` + userInfo.id}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/repositoryAmount" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/userName"
+                app:layout_constraintBottom_toBottomOf="@+id/userThumb" app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/userThumb" android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintHorizontal_bias="0.0"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>
