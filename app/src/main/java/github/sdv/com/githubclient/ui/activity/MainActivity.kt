@@ -6,11 +6,15 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import github.sdv.com.githubclient.App
+import github.sdv.com.githubclient.Constant
 import github.sdv.com.githubclient.R
 import github.sdv.com.githubclient.adapter.MainAdapter
+import github.sdv.com.githubclient.asObservable
 import github.sdv.com.githubclient.databinding.ActivityMainBinding
 import github.sdv.com.githubclient.di.DaggerMainActivityComponent
 import github.sdv.com.githubclient.ui.vm.MainViewModel
+import kotlinx.android.synthetic.main.activity_main.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -45,8 +49,18 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
         }
 
+        searchView
+            .asObservable()
+            .filter { it != "" }
+            .debounce(Constant.SEARCH_DELAY, TimeUnit.MILLISECONDS)
+            .doOnNext {
+                mModel.search(it)
+            }
+            .subscribe()
+
+
         mModel.userLiveData.observe(this, Observer {
-            mAdapter.addData(it ?: emptyList())
+            mAdapter.updateData(it ?: emptyList())
         })
 
         mModel.getAllUsers()
