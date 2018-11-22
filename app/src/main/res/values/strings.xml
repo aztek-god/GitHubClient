@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">GitHubClient</string>
     <string name="repos_are_loading">Repos are loading...</string>
+    <string name="login">Login</string>
+    <string name="user_type">User type</string>
+    <string name="site_admin">Site admin</string>
+    <string name="url">Url</string>
+    <string name="userid">UserId</string>
 </resources>

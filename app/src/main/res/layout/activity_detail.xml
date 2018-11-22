@@ -36,7 +36,7 @@
                     app:layout_constraintStart_toEndOf="@+id/userIdLabel" app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"/>
             <TextView
-                    android:text="UserId"
+                    android:text="@string/userid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/userIdLabel"
@@ -46,7 +46,7 @@
                     app:layout_constraintHorizontal_bias="0.0" app:layout_constraintEnd_toStartOf="@+id/userId"
                     app:layout_constraintHorizontal_chainStyle="packed"/>
             <TextView
-                    android:text="Url"
+                    android:text="@string/url"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/urlLabel"
@@ -64,7 +64,7 @@
                     app:layout_constraintStart_toEndOf="@+id/urlLabel" app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"/>
             <TextView
-                    android:text="Site admin"
+                    android:text="@string/site_admin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/siteAdminLabel"
@@ -82,7 +82,7 @@
                     app:layout_constraintStart_toEndOf="@+id/siteAdminLabel" app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"/>
             <TextView
-                    android:text="User type"
+                    android:text="@string/user_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/userTypeLabel"
@@ -92,7 +92,7 @@
                     app:layout_constraintHorizontal_bias="0.0" app:layout_constraintEnd_toStartOf="@+id/userType"
                     app:layout_constraintHorizontal_chainStyle="packed"/>
             <TextView
-                    android:text="login"
+                    android:text="@string/login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/loginLabel"
